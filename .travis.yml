@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run navime/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "docker-react"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-151837726730"
+  bucker_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+    secure: "$AWS_SECRET_KEY"
